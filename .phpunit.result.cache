@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"Tests\\WindowTest::testWindowFactoryCreate":0.004}}
+{"version":1,"defects":{"Test\\Unit\\DemoRunTest::testKata1":4,"Test\\Unit\\DemoRunTest::testKata2":4,"Test\\Unit\\DemoRunTest::testKata3":4,"Test\\Unit\\DemoRunTest::testKata4":4},"times":{"Tests\\WindowTest::testWindowFactoryCreate":0.004,"Test\\Unit\\DemoRunTest::testKata1":0.034,"Test\\Unit\\DemoRunTest::testKata2":0.019,"Test\\Unit\\DemoRunTest::testKata3":0.007,"Test\\Unit\\DemoRunTest::testKata4":0}}

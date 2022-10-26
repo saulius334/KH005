@@ -2,6 +2,8 @@
     "name": "saulius/kh005",
     "autoload": {
         "psr-4": {
+            "App\\": "src/",
+            "Test\\": "tests",
             "Saulius\\Kh005\\": "src/"
         }
     },
