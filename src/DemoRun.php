@@ -9,6 +9,7 @@ use App\Kata1\Price;
 use App\Kata1\Shipping;
 use App\Kata2\PriceCalculatorInterface;
 use App\Kata3\DiscountStrategy;
+use App\Kata4\DpdShippingProvider;
 
 class DemoRun
 {
@@ -49,12 +50,16 @@ class DemoRun
 
     public function kata4()
     {
-        // shipping = 8;
-        // discount = 20;
-        // new Price(100);
+        $shipping = 8;
+        $discount = 20;
+        $price = new Price(100);
 
-        //OMG ¯\_(ツ)_/¯ , don't be lazy, change me
-        return 84;
+        $dpd = new DpdShippingProvider();
+        $cheapest = $shipping < $dpd->ourCost() ? $shipping : $dpd->ourCost();
+        $calculator = new DiscountStrategy($this->isTuesday());
+        $answer = $calculator->calculator->calculate($price->cost(), $discount, $cheapest);
+        //OMG ¯\_(ツ)_/¯ 
+        return $answer;
     }
 
     /**

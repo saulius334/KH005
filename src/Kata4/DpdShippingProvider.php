@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Kata3;
+namespace App\Kata4;
 
 class DpdShippingProvider
 {
