@@ -1,0 +1,33 @@
+{
+    "name": "saulius/kh005",
+    "autoload": {
+        "psr-4": {
+            "Saulius\\Kh005\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "saulius334",
+            "email": "105633620+saulius334@users.noreply.github.com"
+        }
+    ],
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpstan/phpstan": "^1.8",
+        "phpunit/phpunit": "^9.5"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "scripts": {
+        "phpcs": "./vendor/bin/phpcs --standard=phpcs.xml.dist",
+        "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon.dist --memory-limit=2G",
+        "phpunit": "./vendor/bin/phpunit -c ./phpunit.xml.dist",
+        "fix": "./vendor/bin/phpcbf",
+        "all" : [
+            "@phpcs",
+            "@phpstan",
+            "@phpunit"
+        ]
+    }
+}
