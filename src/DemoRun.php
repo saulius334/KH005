@@ -31,9 +31,8 @@ class DemoRun
         $shipping = 8;
         $discount = 20;
         $price = new Price(100);
-        $this->calculator = $calculator;
         // command ??
-        $answer = $this->calculator->calculate($price->cost(), $discount, $shipping);
+        $answer = $calculator->calculate($price->cost(), $discount, $shipping);
         return $answer;
     }
 
@@ -54,12 +53,16 @@ class DemoRun
         $discount = 20;
         $price = new Price(100);
 
+        $answer1 = (new Shipping((new DpdShippingProvider())->ourCost(), new Discount($discount, $price)))->cost();
+        // return $answer1;
         $dpd = new DpdShippingProvider();
         $cheapest = $shipping < $dpd->ourCost() ? $shipping : $dpd->ourCost();
         $calculator = new DiscountStrategy($this->isTuesday());
-        $answer = $calculator->calculator->calculate($price->cost(), $discount, $cheapest);
+
+        $answer2 = $calculator->calculator->calculate($price->cost(), $discount, $cheapest);
         //OMG ¯\_(ツ)_/¯ 
-        return $answer;
+        return $answer2;
+        // return $answer2;
     }
 
     /**
