@@ -8,6 +8,6 @@ class FreeShippingCalculator implements PriceCalculatorInterface
 {
     public function calculate(float $price, float $discount, float $tax)
     {
-        return 100 * (1 - $discount / $price); // + $tax
+        return 100 * (1 - $discount / $price);
     }
 }

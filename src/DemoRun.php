@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\Kata1\Discount;
 use App\Kata1\Price;
+use App\Kata1\Discount;
 use App\Kata1\Shipping;
-use App\Kata2\PriceCalculatorInterface;
-use App\Kata3\DiscountStrategy;
+use App\Kata3\ShippingStrategy;
 use App\Kata4\DpdShippingProvider;
+use App\Kata2\PriceCalculatorInterface;
+use App\Kata4\DpdShippingProviderAdapter;
 
 class DemoRun
 {
@@ -41,28 +42,37 @@ class DemoRun
         $shipping = 8;
         $discount = 20;
         $price = new Price(100);
-        $strategy = new DiscountStrategy($this->isTuesday());
-        // strategy
+        $strategy = new ShippingStrategy($this->isTuesday());
+
         $answer = $strategy->calculator->calculate($price->cost(), $discount, $shipping);
         return $answer;
     }
 
     public function kata4()
     {
-        $shipping = 8;
+        // $shipping = 8;
+        $shipping = new DpdShippingProvider();
         $discount = 20;
         $price = new Price(100);
 
-        $answer1 = (new Shipping((new DpdShippingProvider())->ourCost(), new Discount($discount, $price)))->cost();
-        // return $answer1;
-        $dpd = new DpdShippingProvider();
-        $cheapest = $shipping < $dpd->ourCost() ? $shipping : $dpd->ourCost();
-        $calculator = new DiscountStrategy($this->isTuesday());
+        $shippingCost = new DpdShippingProviderAdapter($shipping);
+        $strategy = new ShippingStrategy($this->isTuesday());
 
-        $answer2 = $calculator->calculator->calculate($price->cost(), $discount, $cheapest);
-        //OMG ¯\_(ツ)_/¯ 
-        return $answer2;
+        $answer3 = $strategy->calculator
+        ->calculate($price->cost(), $discount, $shippingCost->cost());
+        return $answer3;
+
+        
+        // $dpd = new DpdShippingProvider();
+        // $calculator = new DiscountStrategy($this->isTuesday());
+        // $answer2 = $calculator->calculator->calculate($price->cost(), $discount, $dpd->ourCost());
         // return $answer2;
+
+
+        // $answer1 = (new Shipping((new DpdShippingProvider())->ourCost(), new Discount($discount, $price)))->cost();
+        // return $answer1;
+        
+        //OMG ¯\_(ツ)_/¯ 
     }
 
     /**

@@ -39,5 +39,7 @@ class DemoRunTest extends TestCase
     public function testKata4(): void
     {
         $this->assertEquals(84, $this->runner->kata4());
+        $this->runner->setIsTuesday(true);
+        $this->assertEquals(80, $this->runner->kata4());
     }
 }
