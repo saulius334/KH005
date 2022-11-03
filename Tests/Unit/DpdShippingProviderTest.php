@@ -11,10 +11,9 @@ use function PHPUnit\Framework\assertSame;
 
 class DpdShippingProviderTest extends TestCase
 {
-
-    public function testIfReturnCorrectCost(): void
+    public function testDpdShippingProviderReturnCorrectCost(): void
     {
         $dpd = new DpdShippingProvider();
-        assertSame(4.0, $dpd->ourCost());
+        assertSame((float)4, $dpd->ourCost());
     }
 }

@@ -6,19 +6,25 @@ namespace Test\Unit;
 
 use App\Kata1\Price;
 use App\Kata1\Shipping;
-use PHPUnit\Framework\MockObject\MockClass;
+use Generator;
 use PHPUnit\Framework\TestCase;
 
-use function PHPUnit\Framework\assertSame;
-
 class ShippingTest extends TestCase
+/**
+ * @dataProvider additionProvider
+ */
 {
-
-    
-    public function testIfReturnCorrectCost(): void
+    public function testIfShippingReturnsCorrectCost(float $price,float $shipping,float $expected): void
+    {   
+        $shipping = new Shipping($shipping, new Price($price));
+        $this->assertEquals($expected, $shipping->cost());
+    }
+    public function additionProvider(): Generator
     {
-        $price = new Price(5);
-        $shipping = new Shipping(100,$price);
-        assertSame($shipping->cost(),105.0);
+        yield 'FirstExample' => [
+            'price' => 100,
+            'shipping' => 100,
+            'expected' => 200,
+        ];
     }
 }
