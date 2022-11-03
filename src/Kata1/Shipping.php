@@ -6,7 +6,7 @@ namespace App\Kata1;
 
 class Shipping implements CostInterface
 {
-    public function __construct($shipping, private CostInterface $costInterface)
+    public function __construct(float $shipping, private CostInterface $costInterface)
     {
         $this->shipping = $shipping;
     }
